@@ -1,0 +1,76 @@
+.container-header{
+    display: flex;
+    height: 100px;
+    padding: 20px 50px 20px 50px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo h2{
+    width: 25%;
+    font-size: 36px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.menu{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.menu ul{
+    display: flex;
+    list-style-type: none;
+
+
+}
+
+.menu li{
+    margin: 20px;
+}
+
+.menu li a{
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+.menu li a:hover{
+    color: #17467c;
+}
+
+.car-widget{
+    display: flex;
+    width: 25%;
+    justify-content: end;
+    align-items: center;
+}
+
+.car-widget_icono{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.car-widget_icono svg {
+    fill: #000; 
+    transition: fill 0.5s ease, transform 0.5s ease;
+  }
+  
+  .car-widget:hover .car-widget_icono svg {
+    fill: #17467c;
+    transform: scale(1.1);
+  }
+
+.car-widget_contador{
+    display: flex;
+    align-items: center;
+}
+
+.car-widget_contador h6{
+    font-size: 12px;
+    margin-left: 3px;
+}
+
