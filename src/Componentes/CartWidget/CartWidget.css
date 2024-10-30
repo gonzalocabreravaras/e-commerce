@@ -1,0 +1,26 @@
+.cart-widget {
+  display: flex;
+  align-items: center;
+}
+
+.cart-widget i{
+  margin-right: 8px;
+}
+
+.item-count {
+  background-color: #17467c;
+  color: white;
+  font-size: 10px; 
+  font-weight: 600;
+  border-radius: 50%; 
+  width: 15px;  
+  height: 15px;   
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+}
+
+.fa-md {
+  font-size: 1.2rem;
+}
+  

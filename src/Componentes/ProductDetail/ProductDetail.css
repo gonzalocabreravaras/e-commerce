@@ -1,0 +1,32 @@
+.container-detail{
+    margin: 50px 50px 50px 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+}
+
+.box-info {
+    width: 60%;
+}
+
+.box-info h5{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.box-info h4{
+    padding-top: 15px;
+}
+
+.box-img {
+    width: 40%;
+}
+
+.box-img img{
+    border-radius: 8px;
+}
+
+.box-info button{
+    margin-top: 20px;
+}
+

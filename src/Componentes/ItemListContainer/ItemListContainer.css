@@ -1,7 +1,25 @@
-.container-list{
-    margin: 50px 50px 0px 50px;
+.container-app{
+    margin: 50px 50px 50px 50px;
 }
 
 .container-list h2{
     font-weight: 600;
 }
+
+.container-card {
+    display: flex;
+}
+
+.row{
+    display: flex;
+    margin-top: 50px;
+}
+
+.card {
+    width: 100%;
+}
+
+.no-border {
+    border: none !important;
+    box-shadow: none !important;
+  }
