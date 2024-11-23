@@ -15,6 +15,7 @@
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@mui/material": "^6.1.2",
     "bootstrap": "^5.3.3",
+    "firebase": "^11.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-loading-skeleton": "^3.5.0",
@@ -31,6 +32,7 @@
     "eslint-plugin-react-refresh": "^0.4.12",
     "gh-pages": "^6.1.1",
     "globals": "^15.9.0",
+    "react-app-rewired": "^2.2.1",
     "vite": "^5.4.8",
     "vite-plugin-history": "^1.0.2"
   }

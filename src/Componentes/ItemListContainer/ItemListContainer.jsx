@@ -4,39 +4,56 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './ItemListContainer.css';
 import { formatCurrency } from '../../Utils/utils';
+import db from '../../firebase';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
-const ItemListContainer = ({ saludo, products }) => {
+const ItemListContainer = ({ saludo }) => {
   const { categoria } = useParams();
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  const filteredProducts = categoria
-    ? products.filter((product) => product.categoria === categoria)
-    : products;
 
   const title = categoria ? categoria : saludo;
 
   useEffect(() => {
-    const loadProducts = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setLoading(false);
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const collectionRef = collection(db, 'productos');
+        const q = categoria
+          ? query(collectionRef, where('categoria', '==', categoria))
+          : collectionRef;
+  
+        const querySnapshot = await getDocs(q);
+        const fetchedProducts = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+  
+        console.log(fetchedProducts);
+        setProducts(fetchedProducts);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
     };
-
-    loadProducts();
-  }, []);
-
+  
+    fetchProducts();
+  }, [categoria]);
+  
   useEffect(() => {
-    if (categoria && !loading && filteredProducts.length === 0) {
+    if (!loading && categoria && products.length === 0) {
       navigate('/404');
     }
-  }, [categoria, filteredProducts, loading, navigate]);
+  }, [categoria, products, loading, navigate]);
 
   return (
     <div className="container-app">
       {loading ? (
         <Skeleton height={40} style={{ borderRadius: '0.5rem' }} />
       ) : (
-        <h2>{title}</h2> 
+        <h2>{title}</h2>
       )}
       <div className="row">
         {loading ? (
@@ -51,8 +68,8 @@ const ItemListContainer = ({ saludo, products }) => {
             </div>
           ))
         ) : (
-          filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
+          products.length > 0 ? (
+            products.map((product) => (
               <div className="container-card col-md-3" key={product.id}>
                 <div className="card mt-5">
                   <img
@@ -61,12 +78,13 @@ const ItemListContainer = ({ saludo, products }) => {
                     alt={product.nombre}
                   />
                   <div className="card-body">
-                  <p className="card-text">{product.categoria}</p>
+                    <p className="card-text">{product.categoria}</p>
                     <h5 className="card-title">{product.nombre}</h5>
                     <p className="card-text">{formatCurrency(product.precio)} CLP</p>
                     <button
                       className="btn btn-primary btn-style"
                       onClick={() => navigate(`/producto/${product.id}`)}
+
                     >
                       Ver detalles
                     </button>
@@ -84,19 +102,6 @@ const ItemListContainer = ({ saludo, products }) => {
 };
 
 export default ItemListContainer;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
